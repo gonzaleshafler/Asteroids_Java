@@ -1,7 +1,6 @@
-package sample.items;
+package sample.model;
 
 
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import sample.view.GameView;
@@ -13,16 +12,18 @@ public class Player extends GameObject {
     private double worldX;
     private double worldY;
     private double cooldown;
-    ArrayList<Bullet> bullets = new ArrayList<>();
+    ArrayList<Bullet> bullets = new ArrayList<>(5);
     public AtomicInteger points = new AtomicInteger();
 
     public Player(int x, int y) {
+
         super(new Polygon(-10,-10,15,0,-10,10), x, y);
         super.getShape().setFill(Color.WHITE);
         this.worldX = 0;
         this.worldY = 0;
         this.cooldown = 0;
         this.points.set(0);
+
     }
 
 
@@ -35,26 +36,27 @@ public class Player extends GameObject {
     }
     @Override
     public void move() {
-        super.move();
-
+        if (isActive())
+        {
+            super.move();
             this.worldX += this.getVelocity().getX();
             this.worldY += this.getVelocity().getY();
+        }
     }
     public void shoot()
     {
-        Pane pane = GameView.getInstance().getPane();
         if (this.cooldown <= 0) {
 
-            for (int i = 0; i < 1; i++) {         // number of lasers fired per burst (default 1)
+            for (int i = 0; i < 1; i++) {
                 Bullet bullet = new Bullet((int) this.getShape().getTranslateX(), (int) this.getShape().getTranslateY());
                 setBulletPos(bullet);
                 bullet.accelerate(5000);
                 this.bullets.add(bullet);
-                pane.getChildren().add(bullet.getShape());
-
-                this.cooldown += 20;           // cooldown (here per laser, could also be per burst)
+                GameView.getInstance().getPane().getChildren().add(bullet.getShape());
+                this.cooldown += 20;
             }
         }
+
     }
     private void  setBulletPos(Bullet bullet)
     {
@@ -73,5 +75,8 @@ public class Player extends GameObject {
     {
         return bullets;
     }
-
+    public AtomicInteger getPoints()
+    {
+        return points;
+    }
 }

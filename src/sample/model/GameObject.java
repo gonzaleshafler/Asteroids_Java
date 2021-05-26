@@ -1,4 +1,4 @@
-package sample.items;
+package sample.model;
 
 import javafx.scene.shape.Polygon;
 import javafx.geometry.Point2D;
@@ -10,12 +10,8 @@ public abstract class GameObject {
 
     private Point2D velocity;
 
-    private boolean active = true;
+    private boolean active;
 
-    public GameObject()
-    {
-
-    }
     public GameObject(Polygon node, int x, int y)
     {
         this.obj = node;
@@ -33,19 +29,19 @@ public abstract class GameObject {
         this.obj.setTranslateY(this.obj.getTranslateY() + this.velocity.getY());
 
         if (this.obj.getTranslateX() < 0) {
-            this.obj.setTranslateX(this.obj.getTranslateX() + Main.screenHeight);
+            this.obj.setTranslateX(this.obj.getTranslateX() + Main.screenWidth);
         }
 
         if (this.obj.getTranslateX() > Main.screenHeight) {
-            this.obj.setTranslateX(this.obj.getTranslateX() % Main.screenHeight);
+            this.obj.setTranslateX(this.obj.getTranslateX() % Main.screenWidth);
         }
 
         if (this.obj.getTranslateY() < 0) {
-            this.obj.setTranslateY(this.obj.getTranslateY() + Main.screenWidth);
+            this.obj.setTranslateY(this.obj.getTranslateY() + Main.screenHeight);
         }
 
         if (this.obj.getTranslateY() > Main.screenHeight) {
-            this.obj.setTranslateY(this.obj.getTranslateY() % Main.screenWidth);
+            this.obj.setTranslateY(this.obj.getTranslateY() % Main.screenHeight);
         }
 
     }
@@ -60,7 +56,7 @@ public abstract class GameObject {
 
     public void turnLeft(int t) {
 
-        this.obj.setRotate(this.obj.getRotate() - 1 * t);
+        this.obj.setRotate(this.obj.getRotate() - t);
     }
 
     public void turnRight() {
@@ -70,7 +66,7 @@ public abstract class GameObject {
 
 
     public void turnRight(int t) {
-        this.obj.setRotate(this.obj.getRotate() + 1 * t);
+        this.obj.setRotate(this.obj.getRotate() + t);
     }
 
 

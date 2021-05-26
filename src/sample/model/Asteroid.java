@@ -1,4 +1,6 @@
-package sample.items;
+package sample.model;
+
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 
@@ -10,10 +12,11 @@ public class Asteroid extends GameObject {
 
     public Asteroid(int x, int y) {
         super(new PolygonGenerator().createPolygon(),x,y);
+
         Random random = new Random();
         super.getShape().setRotate(random.nextInt(360));
 
-        int acceleration = 1 +random.nextInt(15);
+        int acceleration = 1 +random.nextInt(60);
         accelerate(acceleration);
         this.rotationalMovement = 0.5 - random.nextDouble();
     }

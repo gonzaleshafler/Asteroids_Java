@@ -1,8 +1,8 @@
 package sample.view;
 
 import javafx.scene.layout.Pane;
-import sample.items.Asteroid;
-import sample.items.GlobalObj;
+import sample.model.Asteroid;
+import sample.model.GlobalObj;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +12,7 @@ import static sample.Main.screenWidth;
 
 public class GameView {
     private final GlobalObj globalObj;
-    private final Pane pane;
+    private  Pane pane;
     private static GameView instance;
     public GameView(GlobalObj globalObj, Pane pane)
     {
@@ -26,10 +26,14 @@ public class GameView {
         }
         return instance;
     }
-    private GameView()
+    public GameView()
     {
         this.pane = new Pane();
         this.globalObj = new GlobalObj();
+    }
+
+    public static void setInstance(GameView gameView) {
+        instance = gameView;
     }
 
     public void addContent()
@@ -43,7 +47,7 @@ public class GameView {
             Asteroid asteroid = new Asteroid(random.nextInt(screenWidth/3),random.nextInt(screenHeight));
             asteroids.add(asteroid);
         }
-        asteroids.forEach(asteroid -> pane.getChildren().add(asteroid.getShape()));
+        asteroids.forEach(asteroid -> pane.getChildren().add(0,asteroid.getShape()));
         globalObj.setAsteroids(asteroids);
 
     }
@@ -54,5 +58,9 @@ public class GameView {
 
     public Pane getPane() {
         return pane;
+    }
+    public void  setPane(Pane pane)
+    {
+        this.pane = pane;
     }
 }

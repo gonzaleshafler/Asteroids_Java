@@ -1,4 +1,4 @@
-package sample.items;
+package sample.model;
 import java.util.Random;
 
 import javafx.scene.paint.Color;
@@ -9,7 +9,7 @@ public class PolygonGenerator {
     public Polygon createPolygon() {
         Random random = new Random();
 
-        double size = 30 + random.nextInt(15);
+        double size = 30 + random.nextInt(30);
 
         Polygon polygon = new Polygon();
         double c1 = Math.cos(Math.PI * 2 / 5);
@@ -28,7 +28,7 @@ public class PolygonGenerator {
             int change = random.nextInt(5) - 2;
             polygon.getPoints().set(i, polygon.getPoints().get(i) + change);
         }
-        polygon.setFill(Color.WHITE);
+        polygon.setFill(Color.rgb((int)(160-size*2),(int)(160-size*2),(int)(160-size*2)));
         return polygon;
     }
 }

@@ -2,7 +2,7 @@ package sample;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.input.KeyCode;
-import sample.items.Player;
+import sample.model.Player;
 
 public class KeyboardHandler {
     private Map<KeyCode, Boolean> pressedKeys;
