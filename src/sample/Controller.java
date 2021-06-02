@@ -40,20 +40,8 @@ public class Controller {
                     text.setText("Points: " + gameView.getGlobals().getPlayer().getPoints());
                     keyboardhandler.handle();
                 }
-                gameView.getGlobals().collisions();
-                gameView.getGlobals().getAsteroids().forEach(asteroid -> {if (!asteroid.isActive())
-                    pane.getChildren().remove(asteroid.getShape());
-                });
+                gameView.update();
 
-                gameView.getGlobals().getPlayer().getBullets().forEach(bullet -> {if (!bullet.isActive())
-                    pane.getChildren().remove(bullet.getShape());
-                });
-                gameView.getGlobals().getPlayer().getBullets().removeIf(Bullet::checkOutOfScreen);
-                gameView.getGlobals().getPlayer().getBullets().removeIf(bullet -> !bullet.isActive());
-                gameView.getGlobals().getAsteroids().removeIf(asteroid -> !asteroid.isActive());
-
-                gameView.getGlobals().moveObjects();
-                gameView.getGlobals().getPlayer().cooldown();
 
                 gameView.getGlobals().getAsteroids().forEach(asteroid -> {
                     if (gameView.getGlobals().getPlayer().collide(asteroid))
@@ -78,8 +66,6 @@ public class Controller {
        animationTimer.start();
 
     }
-
-
     public void processKey(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case R:

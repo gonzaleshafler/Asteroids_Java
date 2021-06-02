@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-768" maxWidth="-1024" minHeight="-768" minWidth="-1024" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <center>
-      <Pane fx:id="pane" onKeyPressed="#processKey" focusTraversable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="pane" focusTraversable="true" onKeyPressed="#processKey" onKeyReleased="#processKey" onKeyTyped="#processKey" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas height="200" width="200" />
-         </children>
-      </Pane>
+            <Text fx:id="text" fill="WHITE" scaleZ="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points: 0" textAlignment="CENTER" translateZ="1.0" x="20.0" y="30.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children></Pane>
    </center>
 </BorderPane>

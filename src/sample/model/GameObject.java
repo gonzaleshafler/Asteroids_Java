@@ -21,8 +21,6 @@ public abstract class GameObject {
         this.velocity = new Point2D(0,0);
 
     }
-
-
     public  void move()
     {
         this.obj.setTranslateX(this.obj.getTranslateX() + this.velocity.getX());
@@ -45,9 +43,6 @@ public abstract class GameObject {
         }
 
     }
-
-
-
 
     public void turnLeft() {
 
